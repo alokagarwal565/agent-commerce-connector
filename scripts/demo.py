@@ -116,16 +116,23 @@ def main():
         run_mock()
         return
 
-    # Try live mode, fall back to mock
     try:
         from app.config import Settings
-        Settings()  # type: ignore[call-arg]
-        print("WooCommerce credentials found — running in LIVE mode.")
+        settings = Settings()  # type: ignore[call-arg]
+
+        key_val = settings.woocommerce_consumer_key.get_secret_value()
+        if "example-store.test" in settings.woocommerce_store_url or "your_consumer_key" in key_val:
+            print("Placeholder credentials detected in .env — running in MOCK mode.")
+            run_mock()
+            return
+
+        print(f"Connecting to live WooCommerce store ({settings.woocommerce_store_url})...")
         asyncio.run(run_live())
-    except Exception:
-        print("No WooCommerce credentials configured — running in MOCK mode.")
+    except Exception as exc:
+        print(f"Live mode not available ({exc}) — running in MOCK mode.")
         run_mock()
 
 
 if __name__ == "__main__":
     main()
+

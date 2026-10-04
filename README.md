@@ -22,6 +22,7 @@ A private, production-grade Model Context Protocol (MCP) connector that enables 
 - [Running as an MCP Server](#running-as-an-mcp-server)
 - [Error Handling & Resilience](#error-handling--resilience)
 - [Example Agent Workflows](#example-agent-workflows)
+- [Assumptions & Limitations](#assumptions--limitations)
 - [Documentation Index](#documentation-index)
 
 ---
@@ -320,9 +321,26 @@ Here are example user queries and how the agent utilizes the connector tools:
 
 ---
 
+## Assumptions & Limitations
+
+### Assumptions
+1. **API Version**: The connector assumes WooCommerce REST API v3 (`/wp-json/wc/v3`), enabled by default in all modern WooCommerce installations (v3.5+).
+2. **Transport Security (HTTPS)**: Assumes production stores enforce HTTPS. WooCommerce Basic Auth transmits encoded API keys, which requires SSL/TLS encryption.
+3. **Permissions**: Assumes the API key has at least `Read` permissions under **WooCommerce > Settings > Advanced > REST API**.
+4. **Agent Transport**: Assumes the AI agent platform (Agent Studio, Claude Desktop, Cursor) supports standard Model Context Protocol (MCP) clients over `stdio` or SSE.
+
+### Limitations
+1. **Strictly Read-Only**: By design, mutation operations (creating/cancelling orders, changing product prices, issuing refunds, updating stock levels) are omitted to safeguard merchant operations against LLM hallucinations or unauthorized actions.
+2. **Pass-Through Architecture (No Local Cache)**: To ensure 100% data consistency, the connector acts as a direct pass-through to WooCommerce. High-frequency queries rely directly on store performance and rate limits.
+3. **Single Store Instance**: Configured for a single merchant store per connector instance via environment variables. Multi-tenant routing would require running separate container instances per merchant.
+4. **Inventory Coupled to Product Resource**: Because WooCommerce manages inventory fields directly within the `/products` endpoint rather than having a distinct `/inventory` API, inventory checks inspect the underlying product schema.
+
+---
+
 ## Documentation Index
 
 - [docs/architecture.md](docs/architecture.md): Architectural components, data flow diagrams, security boundaries.
 - [docs/agent-capabilities.md](docs/agent-capabilities.md): Agent CAN / CANNOT matrix and read-only rationale.
 - [docs/design-decisions.md](docs/design-decisions.md): Why WooCommerce, FastMCP over REST, client encapsulation, and out-of-scope items.
 - [scripts/demo.py](scripts/demo.py): Standalone demo runner.
+
