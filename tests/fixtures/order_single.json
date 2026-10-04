@@ -1,0 +1,28 @@
+{
+  "id": 1001,
+  "status": "processing",
+  "currency": "USD",
+  "total": "149.99",
+  "customer_id": 42,
+  "billing": {"email": "jane.doe@example.test"},
+  "date_created": "2025-03-15T10:30:00",
+  "date_modified": "2025-03-15T11:00:00",
+  "payment_method": "stripe",
+  "customer_note": "Please gift wrap",
+  "line_items": [
+    {
+      "product_id": 10,
+      "name": "Running Shoes",
+      "quantity": 1,
+      "subtotal": "99.99",
+      "sku": "RS-001"
+    },
+    {
+      "product_id": 11,
+      "name": "Sports Socks (3-pack)",
+      "quantity": 2,
+      "subtotal": "50.00",
+      "sku": "SS-003"
+    }
+  ]
+}

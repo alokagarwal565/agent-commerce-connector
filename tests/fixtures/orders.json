@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1001,
+    "status": "processing",
+    "currency": "USD",
+    "total": "149.99",
+    "customer_id": 42,
+    "billing": {"email": "jane.doe@example.test"},
+    "date_created": "2025-03-15T10:30:00",
+    "date_modified": "2025-03-15T11:00:00",
+    "payment_method": "stripe",
+    "customer_note": "",
+    "line_items": [
+      {
+        "product_id": 10,
+        "name": "Running Shoes",
+        "quantity": 1,
+        "subtotal": "99.99",
+        "sku": "RS-001"
+      },
+      {
+        "product_id": 11,
+        "name": "Sports Socks (3-pack)",
+        "quantity": 2,
+        "subtotal": "50.00",
+        "sku": "SS-003"
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "status": "completed",
+    "currency": "USD",
+    "total": "29.99",
+    "customer_id": 17,
+    "billing": {"email": "john.smith@example.test"},
+    "date_created": "2025-03-14T08:00:00",
+    "date_modified": "2025-03-14T12:00:00",
+    "payment_method": "paypal",
+    "customer_note": "Leave at front door",
+    "line_items": [
+      {
+        "product_id": 12,
+        "name": "Water Bottle",
+        "quantity": 1,
+        "subtotal": "29.99",
+        "sku": "WB-100"
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "status": "pending",
+    "currency": "EUR",
+    "total": "210.00",
+    "customer_id": 5,
+    "billing": {"email": "alice@example.test"},
+    "date_created": "2025-03-16T14:00:00",
+    "date_modified": "2025-03-16T14:00:00",
+    "payment_method": "",
+    "customer_note": "",
+    "line_items": [
+      {
+        "product_id": 13,
+        "name": "Trail Backpack",
+        "quantity": 1,
+        "subtotal": "210.00",
+        "sku": "TB-050"
+      }
+    ]
+  }
+]

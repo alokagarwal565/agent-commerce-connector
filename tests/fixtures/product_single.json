@@ -1,0 +1,16 @@
+{
+  "id": 10,
+  "name": "Running Shoes",
+  "slug": "running-shoes",
+  "status": "publish",
+  "sku": "RS-001",
+  "price": "99.99",
+  "regular_price": "119.99",
+  "sale_price": "99.99",
+  "stock_quantity": 25,
+  "stock_status": "instock",
+  "manage_stock": true,
+  "low_stock_amount": 5,
+  "categories": [{"id": 1, "name": "Footwear"}],
+  "date_created": "2025-01-10T09:00:00"
+}
